@@ -63,8 +63,36 @@ it can be implemented with different threads. when adopting an event loop we are
 
 All the approach are independent of the state.
 
-SUPERLOOP FSM -> in this case we said that every period of time corresponds to a clock cycle (and every cycle depends on the current state )
+SUPER LOOP FSM -> in this case we said that every period of time corresponds to a clock cycle (and every cycle depends on the current state )
 
 EVENT LOOP FSM -> we model the tick of each loop through events, in this case the handler that will be executed depends on the triggered event.
 
 For representing an FSM in programs we use the <u>STATE DESIGN PATTERN</u>, in which there is an interface that define at high level the event an than a class for each state of the FSM. these class implements the state interface, and inside the state describe the behavior that the machine has when it is in that state, so the events that can trigger and the state in which arrives when that event is triggered.
+
+--------
+
+### Follow up
+
+another representation for representing a process can be a petri net or a process algebra, this last representation can be also used for checking the property of our process.
+
+An important consideration in pervasive computing is that we are influenced a lot by the environment, so when we design the architecture, in case of the event loop we need to consider the frequencies of the environment events, in fact if it generates lot of events we have to implement some mechanism in order to manage these throughput and also manage the situation when some events are missed. For doing that for example we can consider ignoring all the events that are useless for the application. These considerations are only for the event loop, in fact in case of a super loop we are not considering the events, but each period of time we check the state of the system, so we are less influenced by the operation that are occurring in the environment.
+
+If you want to build a reactive system you have not to block the system, so all the long duration activities must be performed asynchronous. The only point in which we can block the system is in which we are waiting for the events, in case of the event loop. in case of the super loop the though is the same, so each cycle mustn't block the system.
+
+In the distributed case logics is put inside the component that interact directly with the environment, in our case is the light, another solution consists in using another component to which is delegate all the logics of the system. in this last case we are considering completely independent the sensors that communicate with the agent that is in charged to manage and collect the data. If i put the logics in a component i can reuse it, so is better using another component, whose task is only managing the logics of the system, doing that we are modularising the system.
+
+Adding an API above each sensors we are abstracting from the implementation, doing that we can use the sensor in different applications because it is reusable. The API show the functionalities that the component can performs for the other services.
+
+So we need another component, agent (sw component), that is in charged of managing the logics, this component is located or in the network level, still in local (**fog computing**), or on cloud (**cloud computing**). So we can decide between two network level. 
+
+While each agent (service) managing the sensor is located in the device (things), so physically (**edge computing**, because they encapsulate the logics inside the sensor). In this case the computation (proactive behavior) is seen as a service performed by that component. Each service is a passive, reactive component because their API is exposed for other component, but it is also proactive because needs to elaborate data for exposing them by the API. They need also to be asynchronous (so no Remote procedure call) because they must be reactive. Each service MUST expose, so have an API.
+
+Depending on the state that we have we can simplify the check of events that can occur, for example if i'm in the detection state i can simplify checking only for the event about no detection, that move us in the no detection state.
+
+A good architecture is translate in haven't to change everything if i want to change a protocol i haven't to change the architecture.
+
+how we can detect failures in the distributed system? we can perform a mechanism of self check, and when  a system detect a failure, informs the main logic module in order to inform it that there is a failure and it must manage it.
+
+The failure state is a method for also knowing the state of the environment. so we have to put effort also for managing that
+
+// servizio -> modo di modellare il dominio, strettamente legato a LSS. I servizi devono essere modellati, anche nelle loro API per essere descritti a livello di dominio, business
