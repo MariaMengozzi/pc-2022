@@ -14,6 +14,8 @@ we can use the ports and adapter (also called hexagonal pattern) architecture. T
 
 Then we have ports that again are not bound to a specific technology. these ports permit us to communicate with the business logic. Outer from the ports, we have another layer that expose and define the API of the application, so the adapter. these are bounded to specific technology.
 
+As said before, ports are not bound to a specific technology. A port is an interface to request functionalities to the business logic or change its state. Ports are a concept hat are strongly bounded to the business logic. The specific implementations are called ADAPTERS. The interactions are asynchronous, because all of these things are uncoupled by the control point of view.
+
 (port is the lamp thing API interface)
 
 For the same Business logic we can have different API (adapter), in our example we have an HTTP API and at the same times, an MQTT API. so 2 different adapters, in order to do the same operations from different technologies. In general we have different API not only for different protocols, but also for doing different operations.
@@ -25,6 +27,8 @@ Another representation is using node-red, in this case we haven't an agent that 
 Model is the place in which we are putting the logics of our system (lamp thing model)
 
 Our lamp thing service has 2 adapters, HTTP and MQTT. both adapters goes to the same port, which is represented by the lamp thing API. The adapter should complaint to WoT.
+
+The agent will interact with the lamp thing model, exposing the same interface of the lamp thing (the lamp thing API).
 
 ![](./img/l2-02.jpg)In the model I haven't any dependency from the adapter, but only from the port.
 
@@ -38,15 +42,35 @@ In our case is the Model that generate the TD (thing description) that is one fo
 
 The proxy doesn't have the link to the real model, because it is in the remote side, it just implement it.
 
+we can find the thing description in the link: localhost:8888/api
+
+<img src="./img/l2-04.jpg" style="zoom:50%;" />
+
+WoT is really based on URI, on the web technologies, like link and forms. For each affordances (offerte) I have a form.
+
+through postman we turned on the light, we did a post request to api/actions/on that called "on"on the model and changed the state on the simulator. An event has been published, generated: if I'm observing the lamp I should receive the notification. The vanilla agent get the state and subscribe on the lamp events. the proxy implements the same interface of the main lamp thing model.
+
+The idea that a service is auto-descriptive in its services helps agents to understand and use components that they have never saw before. Forms enable to perform a post request with pre-compiled and user compiled data.
+
 ### node-red 
 
 in case of node-red is based on flow based programming (reactive programming)
 
-in this case streams are called nodes and hey can generate data. nodes are connected in order to permitts data flowing. nodes are asyncronous
+in this case streams are called nodes and hey can generate data. nodes are connected in order to permits data flowing. nodes are asynchronous
 
 ![](./img/l2-03.jpg)
 
-### Notes -Andre
+The key point is that everything is data oriented and asynchronous, messages flow between nodes. These nodes can be bounded by sources of any sort, to any input generating a flow, all in a declarative way.
+
+Typically there is no shared state, only flowing messages.
+
+With node-red we start not coding, but drawing the flows we want to describe: on the left we have the block that represents the different flow kinds, like injecting data. we can have also input data from MQTT or HTTP request, and also through WoT (must be installed as extension package via npm).
+
+Functions operates on flows generating a new flow, or multiple flows.
+
+
+
+### Notes2
 
 https://docs.google.com/document/d/1d9v65OOI9qKpCA8LDHl839kS5_m_sOMdJ6YU-hlhrH0/edit
 
