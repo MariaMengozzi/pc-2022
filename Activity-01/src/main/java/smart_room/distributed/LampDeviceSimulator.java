@@ -6,17 +6,17 @@ package smart_room.distributed;
 
 import smart_room.*;
 
-public class LightDeviceSimulator implements LightDevice {
+public class LampDeviceSimulator implements LampDevice {
 
-	private LightSimFrame frame;
+	private LampSimFrame frame;
 	private String lightID;
 	
-	LightDeviceSimulator(String lightID){
+	public LampDeviceSimulator(String lightID){
 		this.lightID = lightID;
 	}
 	
 	public void init() {
-		frame = new LightSimFrame(lightID);
+		frame = new LampSimFrame(lightID);
 		frame.display();
 	}
 	

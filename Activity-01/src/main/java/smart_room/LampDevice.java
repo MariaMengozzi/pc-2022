@@ -1,6 +1,6 @@
 package smart_room;
 
-public interface LightDevice {
+public interface LampDevice {
 	
 	void on();
 	void off();

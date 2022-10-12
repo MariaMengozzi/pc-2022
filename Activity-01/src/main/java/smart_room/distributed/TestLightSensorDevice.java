@@ -2,11 +2,11 @@ package smart_room.distributed;
 
 import smart_room.Event;
 
-public class TestLumSensorDevice {
+public class TestLightSensorDevice {
 
 	public static void main(String[] args) throws Exception {
 
-		LuminositySensorSimulator ls = new LuminositySensorSimulator("MyLightSensor");
+		LightSensorSimulator ls = new LightSensorSimulator("MyLightSensor");
 		ls.init();
 		
 		ls.register((Event ev) -> {

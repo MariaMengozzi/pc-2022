@@ -4,9 +4,8 @@
  */
 package lamp_thing.impl;
 
-import smart_room.*;
+public class LampDeviceSimulator implements LampDevice {
 
-public class LampDeviceSimulator implements LightDevice {
 
 	private LampSimFrame frame;
 	private String lightID;

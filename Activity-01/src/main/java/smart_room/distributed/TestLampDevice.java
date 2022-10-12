@@ -1,10 +1,10 @@
 package smart_room.distributed;
 
-public class TestLightDevice {
+public class TestLampDevice {
 
 	public static void main(String[] args) throws Exception {
 
-		LightDeviceSimulator ld = new LightDeviceSimulator("MyLight");
+		LampDeviceSimulator ld = new LampDeviceSimulator("MyLight");
 		ld.init();
 
 		while (true) {

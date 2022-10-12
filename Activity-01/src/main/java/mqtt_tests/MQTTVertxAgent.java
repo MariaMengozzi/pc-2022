@@ -21,16 +21,16 @@ import java.util.Map;
 /*
  * MQTT Agent
  */
-public class MQTTAgent extends AbstractVerticle {
+public class MQTTVertxAgent extends AbstractVerticle {
 	
-	public MQTTAgent() {
+	public MQTTVertxAgent() {
 	}
 
 	@Override
 	public void start() {		
 		MqttClient client = MqttClient.create(vertx);
 
-		client.connect(1883, "broker.mqtt-dashboard.com", c -> {
+		client.connect(1883, "localhost", c -> {
 
 			log("connected");
 			
@@ -40,10 +40,10 @@ public class MQTTAgent extends AbstractVerticle {
 			  System.out.println("Content(as string) of the message: " + s.payload().toString());
 			  System.out.println("QoS: " + s.qosLevel());
 			})
-			.subscribe("esiot-2122", 2);		
+			.subscribe("pc-2022", 2);		
 
 			log("publishing a msg");
-			client.publish("esiot-2122",
+			client.publish("pc-2022",
 				  Buffer.buffer("hello"),
 				  MqttQoS.AT_LEAST_ONCE,
 				  false,

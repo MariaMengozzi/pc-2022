@@ -8,14 +8,14 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 
-class LuminositySensorFrame extends JFrame {		
+class LightSensorFrame extends JFrame {		
 	
 	private JTextField lumValue;
 	private JSlider lumSlider;
 	private int currentLumValue;
-	private LuminositySensorSimulator sim;
+	private LightSensorSimulator sim;
 	
-	public LuminositySensorFrame(LuminositySensorSimulator sim, String name){
+	public LightSensorFrame(LightSensorSimulator sim, String name){
 		this.sim = sim;
 		setTitle("Luminosity Sensor: " + name);
 		setSize(400,160);

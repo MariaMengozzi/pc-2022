@@ -2,22 +2,22 @@
  * Simulator/mock for a luminosity sensor device
  * 
  */
-package smart_room.distributed;
+package light_sensor_thing.impl;
 
-import smart_room.*;
+import common.*;
 
-public class LuminositySensorSimulator  extends AbstractEventSource implements LuminositySensorDevice {
+public class LightSensorSimulator  extends AbstractEventSource implements LightSensorDevice {
 
 	private double currentLuminosityLevel;
 	private String sensorId;
-	private LuminositySensorFrame frame;
+	private LightSensorFrame frame;
 	
-	LuminositySensorSimulator(String sensorId){
+	public LightSensorSimulator(String sensorId){
 		this.sensorId = sensorId;
 	}
 	
 	public void init() {
-		frame = new LuminositySensorFrame(this,sensorId);
+		frame = new LightSensorFrame(this,sensorId);
 		frame.display();
 	}
 	

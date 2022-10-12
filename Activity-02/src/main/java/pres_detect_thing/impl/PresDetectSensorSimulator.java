@@ -2,9 +2,9 @@
  * Simulator/mock for a presence detection sensor device.
  * 
  */
-package smart_room.distributed;
+package pres_detect_thing.impl;
 
-import smart_room.*;
+import common.AbstractEventSource;
 
 public class PresDetectSensorSimulator extends AbstractEventSource implements PresenceDetectionDevice {
 
