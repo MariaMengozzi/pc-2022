@@ -95,3 +95,35 @@ The methods are asynchronous in a way to hide a potential complexity under the s
 This is the consumer of the service (the agent). 
 The *VanillaLampThingConsumerAgent* model the *Agent Model*
 Then we model the Proxy because we want to be independent from technologies also in the Agent Model. In this way the VanillaLampThingConsumerAgent depend only on the Thing API and not on the Thing Adapter Technologies (in this case HTTP and MQTT).
+
+## Follow up 
+
+The TD respect the WoT metamodel. It provides three affordances: properties, commands, events. Then this need some action to do on them: read, write, execute, observe (https://www.w3.org/TR/wot-thing-description/#form). And then in order to access them we need forms that exploit HTTP, MQTT, ecc... https://www.w3.org/TR/wot-thing-description/#omitting-default-values
+
+only when I perceive that the lamp is on i went into the on state
+
+we have different way to model actions .
+
+according to our design, if something comes wrong it anyway generate an event "wrong events"
+
+processEvent => is the entry point in which every event is triggered and processed atomically.
+
+I have the state of the agent that represents also the environment state.
+
+it is a believes, because each agent has a local view of the state, it is called believes because during the time the environment can have changed its state, but the agent doesn't still know that.
+
+Thing => provides some methods for the iot system, so generalize the concept of thing, in this case we haven't 3 different things but only one with common methods.
+
+the idea is that the reactive agents has protected methods used for use things. the behavior of an agents can be seen as a set of actions that it can perform over a thing
+
+with this new design we haven't proxy, but just only things. Doing this we loss something, but we can recover this adding some informations in the description. (we have reduce code, but now we are no more able to detect errors at compile time)
+
+#### node-red
+
+again the idea is to have sense, plan, act as the super loop
+
+how represent here the behavior of each node? it permits to have variable of two types: **context** is at the node level, **global** that can be accessed by every node
+
+sense update my believe of the world state, by the variable used. this is update each period of time (with polling with different rate)
+
+plan, decide what to do. it is designed upon the flow.  we have two blocks that triggered an events. these blocks are concurrent each other and evaluate if the lamp needs to be turned on or off. if the events is related to the block, the block fire the result so the flow is managed normally, so it continue its flows 
