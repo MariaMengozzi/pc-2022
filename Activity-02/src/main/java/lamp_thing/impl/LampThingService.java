@@ -7,8 +7,6 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.CompositeFuture;
 import io.vertx.core.Future;
 import io.vertx.core.Promise;
-import lamp_thing.api.LampThingAPI;
-
 
 /**
  * 

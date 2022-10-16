@@ -34,7 +34,7 @@ public class LampThingHTTPAdapter extends ThingAbstractAdapter<LampThingAPI> {
 	private static final String ACTION_OFF_FULL_PATH = ACTIONS_BASE_PATH + "/" + ACTION_OFF;
 	private static final String EVENTS_FULL_PATH = THING_BASE_PATH + "/events";
 	private static final String EVENT_STATE_CHANGED = "stateChanged";
-
+	
 	private static final int DONE = 201;
 
 
@@ -107,11 +107,11 @@ public class LampThingHTTPAdapter extends ThingAbstractAdapter<LampThingAPI> {
 
 	/**
 	 * Configure the TD with the specific bindings provided by the adapter
-	 *
+	 * 
 	 * @param td
 	 */
 	protected void populateTD(JsonObject td) {
-		JsonArray stateForms =
+		JsonArray stateForms = 
 				td
 				.getJsonObject("properties")
 				.getJsonObject(PROPERTY_STATE)
@@ -121,7 +121,7 @@ public class LampThingHTTPAdapter extends ThingAbstractAdapter<LampThingAPI> {
 		httpStateForm.put("href", "http://" + thingHost + ":" + thingPort + PROPERTY_STATE_FULL_PATH);
 		stateForms.add(httpStateForm);
 
-		JsonArray onForms =
+		JsonArray onForms = 
 				td
 				.getJsonObject("actions")
 				.getJsonObject(ACTION_ON)
@@ -131,7 +131,7 @@ public class LampThingHTTPAdapter extends ThingAbstractAdapter<LampThingAPI> {
 		httpOnForm.put("href", "http://" + thingHost + ":" + thingPort + ACTION_ON_FULL_PATH);
 		onForms.add(httpOnForm);
 
-		JsonArray offForms =
+		JsonArray offForms = 
 				td
 				.getJsonObject("actions")
 				.getJsonObject(ACTION_OFF)
@@ -141,7 +141,7 @@ public class LampThingHTTPAdapter extends ThingAbstractAdapter<LampThingAPI> {
 		httpOffForm.put("href", "http://" + thingHost + ":" + thingPort + ACTION_OFF_FULL_PATH);
 		offForms.add(httpOffForm);
 
-		JsonArray stateChangedForms =
+		JsonArray stateChangedForms = 
 				td
 				.getJsonObject("events")
 				.getJsonObject(EVENT_STATE_CHANGED)

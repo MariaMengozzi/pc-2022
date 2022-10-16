@@ -6,10 +6,6 @@ import io.vertx.core.Promise;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
-<<<<<<< HEAD
-import lamp_thing.api.LampThingAPI;
-=======
->>>>>>> fea235cf71dba1690fd90da14e1dfc6d17eb07e5
 
 /**
  * 
@@ -25,9 +21,7 @@ public class LampThingModel implements LampThingAPI {
 	private String state;
 	
 	private String thingId;
-
-	private JsonObject td; //represent the description of the thing
-
+	private JsonObject td; //represent the thing description
 	private LampDeviceSimulator ld;
 	
 
@@ -139,8 +133,6 @@ public class LampThingModel implements LampThingAPI {
 		ev.put("timestamp", System.currentTimeMillis());
 		this.generateEvent(ev);
 	}
-
-	//we are using the event bus for managing the event
 
 	private void generateEvent(JsonObject ev) {
 		vertx.eventBus().publish("events", ev);	

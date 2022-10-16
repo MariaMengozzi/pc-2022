@@ -6,7 +6,6 @@ package lamp_thing.impl;
 
 public class LampDeviceSimulator implements LampDevice {
 
-
 	private LampSimFrame frame;
 	private String lightID;
 	
