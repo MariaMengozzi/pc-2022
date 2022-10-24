@@ -9,11 +9,11 @@
 +!go <- !createCounter(C);
         !useCounter(C).
 
-//create an artifact this is done by recursion.
+//create an artifact.
 +!createCounter(Id)
     <- makeArtifact(c0, "tools.Counter", [10] ,Id); //create a new piece of environment dynamically, c0 is the logical name it is different from the id, because this last is more at the pc level
     println("counter created ", Id);
-    focus(Id). //focus on the artifact and observe its state. the observe property of the artifact it is automatically translated in my belief, so now I can react to the changing of state of the artifact. I need to add focus before using the artifact
+    focus(Id). //focus on the artifact and observe its state. the observe property of the artifact it is automatically translated in my belief, so now I can react to the changing of state of the artifact. I need to add focus before using the artifact. it execute automatically the plan count
 
 +!useCounter(C)
     <- println("going to use counter ", C);
